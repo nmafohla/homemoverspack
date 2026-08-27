@@ -1,9 +1,9 @@
-import Image from "next/image";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { AMBIENT } from "../_data/media";
 import { BackgroundVideo } from "./BackgroundVideo";
 import { Reveal } from "./Reveal";
 import { Button } from "./Button";
+import { PackVideo } from "./PackVideo";
 
 const PROOF_POINTS = [
   { figure: "Free", label: "Welcome pack, delivered to your new door" },
@@ -83,14 +83,7 @@ export function Hero() {
                 aria-hidden="true"
                 className="absolute left-1/2 top-1/2 h-[22rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-ember-500/20 blur-[80px]"
               />
-              <Image
-                src="/images/pack-box.png"
-                alt="The HomeMoversPack welcome box"
-                width={520}
-                height={520}
-                priority
-                className="animate-float-slow relative mx-auto w-full max-w-[26rem] drop-shadow-[0_40px_60px_rgba(0,0,0,0.55)]"
-              />
+              <PackVideo />
             </Reveal>
           </div>
         </div>
