@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Button } from "./Button";
+import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 import { HOME_HREF } from "../_data/variant";
 
@@ -101,7 +102,7 @@ export function Navbar() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out",
           isScrolled
-            ? "border-b border-ink-900/10 bg-bone-50/85 py-3 backdrop-blur-xl"
+            ? "border-b border-body/10 bg-paper/85 py-3 backdrop-blur-xl"
             : "border-b border-transparent py-5",
         )}
       >
@@ -113,7 +114,7 @@ export function Navbar() {
             <span
               className={cn(
                 "relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white p-1.5 ring-1 transition-all duration-500",
-                isScrolled ? "ring-ink-900/10" : "ring-white/25",
+                isScrolled ? "ring-body/10" : "ring-white/25",
               )}
             >
               <Image
@@ -129,7 +130,7 @@ export function Navbar() {
               <span
                 className={cn(
                   "text-[15px] font-semibold tracking-tight transition-colors duration-500",
-                  isScrolled ? "text-ink-900" : "text-bone-50",
+                  isScrolled ? "text-body" : "text-bone-50",
                 )}
               >
                 HomeMoversPack
@@ -137,7 +138,7 @@ export function Navbar() {
               <span
                 className={cn(
                   "mt-1 text-[9.5px] font-medium uppercase tracking-[0.24em] transition-colors duration-500",
-                  isScrolled ? "text-ink-400" : "text-bone-200/70",
+                  isScrolled ? "text-body-mute" : "text-bone-200/70",
                 )}
               >
                 Moving in made simple
@@ -157,8 +158,8 @@ export function Navbar() {
                     "relative rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-300",
                     isScrolled
                       ? isActive
-                        ? "text-ink-900"
-                        : "text-ink-400 hover:text-ink-900"
+                        ? "text-body"
+                        : "text-body-mute hover:text-body"
                       : isActive
                         ? "text-bone-50"
                         : "text-bone-200/70 hover:text-bone-50",
@@ -169,7 +170,7 @@ export function Navbar() {
                     aria-hidden="true"
                     className={cn(
                       "absolute inset-x-3.5 -bottom-0.5 h-px origin-left transition-transform duration-500 ease-out",
-                      isScrolled ? "bg-ember-500" : "bg-ember-400",
+                      isScrolled ? "bg-accent" : "bg-ember-400",
                       isActive ? "scale-x-100" : "scale-x-0",
                     )}
                   />
@@ -179,6 +180,11 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2.5">
+            <ThemeToggle
+              tone={isScrolled ? "paper" : "onDark"}
+              className="hidden sm:inline-flex"
+            />
+
             <a href="#prize-draw" className="hidden sm:block">
               <Button variant={isScrolled ? "accent" : "onDark"} size="sm">
                 Enter the £10,000 draw
@@ -194,7 +200,7 @@ export function Navbar() {
               className={cn(
                 "flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-300 lg:hidden",
                 isScrolled
-                  ? "border-ink-900/12 text-ink-800 hover:bg-ink-900/5"
+                  ? "border-body/12 text-body hover:bg-body/5"
                   : "border-bone-100/25 text-bone-50 hover:bg-bone-50/10",
               )}
             >
@@ -256,7 +262,11 @@ export function Navbar() {
             ))}
           </nav>
 
-          <a href="#prize-draw" onClick={closeMenu} className="mt-8">
+          <div className="mt-8 flex justify-center">
+            <ThemeToggle tone="onDark" />
+          </div>
+
+          <a href="#prize-draw" onClick={closeMenu} className="mt-5">
             <Button variant="accent" size="lg" className="w-full">
               Enter the £10,000 draw
               <ArrowUpRight className="h-4 w-4" />

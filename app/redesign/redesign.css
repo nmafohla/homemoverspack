@@ -8,6 +8,10 @@
  */
 @import "tailwindcss";
 
+/* Dark mode keys off a class on <html>, set before first paint by
+   lib/theme.ts, so the header toggle can override the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Cool near-black ink */
   --color-ink-950: #06080c;
@@ -55,9 +59,59 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+
+/* ------------------------------------------------------------------
+   Semantic surface tokens.
+
+   The design alternates warm "paper" sections against deliberately dark
+   ones (hero, prize draw, guides, partner, footer). Those dark sections are
+   the brand moments and stay dark in both themes — only the paper sections
+   invert. Paper components therefore reference these semantic names rather
+   than the raw bone and ink palettes, so dark mode is a single block of
+   token overrides instead of a `dark:` variant on every element.
+   ------------------------------------------------------------------ */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-alt: var(--paper-alt);
+  --color-paper-edge: var(--paper-edge);
+  --color-body: var(--body);
+  --color-body-soft: var(--body-soft);
+  --color-body-mute: var(--body-mute);
+  --color-body-faint: var(--body-faint);
+  --color-accent: var(--accent);
+  --color-invert: var(--invert);
+  --color-invert-fg: var(--invert-fg);
+}
+
+:root {
+  --paper: #fdfbf8;
+  --paper-alt: #f8f4ee;
+  --paper-edge: #e2d8c9;
+  --body: #0b0f16;
+  --body-soft: #46525f;
+  --body-mute: #6b7683;
+  --body-faint: #98a1ac;
+  --accent: #d2500f;
+  --invert: #0b0f16;
+  --invert-fg: #fdfbf8;
+}
+
+.dark {
+  --paper: #0b0f16;
+  --paper-alt: #10151e;
+  --paper-edge: #1e2734;
+  --body: #f8f4ee;
+  --body-soft: #a9b2bd;
+  --body-mute: #7c8794;
+  --body-faint: #59636f;
+  --accent: #ff8f4d;
+  --invert: #f8f4ee;
+  --invert-fg: #0b0f16;
+}
+
 .hmp-2026 {
-  background: var(--color-bone-50);
-  color: var(--color-ink-900);
+  background: var(--paper);
+  color: var(--body);
   font-family: var(--font-sans);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   text-rendering: optimizeLegibility;

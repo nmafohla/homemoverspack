@@ -34,6 +34,14 @@ text at full contrast.
 the header, active-section tracking in the nav, a full-screen mobile menu, and
 a progress dial on the checklist.
 
+**Light and dark.** A three-way control in the header — light, follow-the-system,
+dark — persisted to `localStorage` and applied by a blocking script before first
+paint, so there's no flash of the wrong theme. The deliberately dark sections
+(hero, prize draw, guides, partner, footer) stay dark in both themes; only the
+paper sections invert, driven by the semantic tokens in `redesign.css` rather
+than a `dark:` variant on every element. The same script and store serve the
+original design at `/`, which switched from a media query to the same class.
+
 **Accessibility.** Every form control is labelled and wires its own hint/error
 via `aria-describedby`; the modal traps focus, restores it on close and closes
 on Escape; reduced-motion stops all decoration without hiding any content; the

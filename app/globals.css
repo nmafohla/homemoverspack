@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
+/* Dark mode is driven by a class on <html> rather than the OS media query, so
+   the header toggle can override the system setting. lib/theme.ts sets it. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #020617;
-    --foreground: #f8fafc;
-  }
+.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
 }
 
 html {

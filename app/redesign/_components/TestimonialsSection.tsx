@@ -7,7 +7,7 @@ export function TestimonialsSection() {
   return (
     <section
       id="reviews"
-      className="scroll-mt-24 border-b border-bone-300/60 bg-bone-50 py-24 lg:py-32"
+      className="scroll-mt-24 border-b border-paper-edge/60 bg-paper py-24 lg:py-32"
     >
       <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
         <SectionHeading
@@ -16,7 +16,7 @@ export function TestimonialsSection() {
             <>
               What people say when
               <br />
-              <span className="italic text-ember-600">the box arrives.</span>
+              <span className="italic text-accent">the box arrives.</span>
             </>
           }
           lede="Unedited feedback from verified UK movers who received a pack this year."
@@ -32,7 +32,7 @@ export function TestimonialsSection() {
               delay={Math.min(index, 5) * 70}
               className="mb-6 break-inside-avoid"
             >
-              <figure className="rounded-2xl border border-bone-300/70 bg-bone-100/60 p-7 transition-colors duration-500 hover:bg-white">
+              <figure className="rounded-2xl border border-paper-edge/70 bg-paper-alt/60 p-7 transition-colors duration-500 hover:bg-paper-alt">
                 <div
                   className="flex gap-0.5"
                   aria-label={`${testimonial.rating} out of 5 stars`}
@@ -44,32 +44,32 @@ export function TestimonialsSection() {
                       className={
                         starIndex < testimonial.rating
                           ? "h-3.5 w-3.5 fill-ember-500 text-ember-500"
-                          : "h-3.5 w-3.5 text-bone-400"
+                          : "h-3.5 w-3.5 text-body-faint"
                       }
                     />
                   ))}
                 </div>
 
-                <blockquote className="font-display mt-5 text-[1.35rem] leading-[1.4] text-ink-900">
+                <blockquote className="font-display mt-5 text-[1.35rem] leading-[1.4] text-body">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
 
-                <p className="mt-5 text-[13px] leading-relaxed text-ink-400">
+                <p className="mt-5 text-[13px] leading-relaxed text-body-mute">
                   {testimonial.highlight}
                 </p>
 
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-bone-300/70 pt-5">
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-paper-edge/70 pt-5">
                   <span
                     aria-hidden="true"
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink-900 text-[12px] font-semibold text-bone-50"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-invert text-[12px] font-semibold text-invert-fg"
                   >
                     {testimonial.name.charAt(0)}
                   </span>
                   <span className="min-w-0">
-                    <span className="block truncate text-[13.5px] font-semibold text-ink-900">
+                    <span className="block truncate text-[13.5px] font-semibold text-body">
                       {testimonial.name}
                     </span>
-                    <span className="block truncate text-[11.5px] text-ink-400">
+                    <span className="block truncate text-[11.5px] text-body-mute">
                       {testimonial.location} · {testimonial.verifiedMoveDate}
                     </span>
                   </span>

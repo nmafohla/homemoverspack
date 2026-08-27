@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Gift, Menu, X, CheckSquare, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -76,6 +77,7 @@ export function Navbar() {
 
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-3">
+            <ThemeToggle />
             <a href="#checklist">
               <Button
                 variant="outline"
@@ -136,6 +138,9 @@ export function Navbar() {
                 </a>
               ))}
               <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
+                <div className="flex justify-center pb-1">
+                  <ThemeToggle />
+                </div>
                 <a href="#checklist" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button
                     variant="outline"

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+import { THEME_BOOTSTRAP } from "@/lib/theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -44,7 +45,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en-GB" className="scroll-smooth">
+    /* suppressHydrationWarning: the bootstrap script below sets a class on
+       <html> before React hydrates, which React would otherwise flag. */
+    <html lang="en-GB" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
+      </head>
       <body className="font-sans antialiased text-slate-900 bg-white dark:bg-slate-950 dark:text-slate-100">
         {children}
       </body>

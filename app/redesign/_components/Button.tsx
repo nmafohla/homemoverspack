@@ -21,12 +21,12 @@ export function Button({
 }: ButtonProps) {
   const variantStyles = {
     primary:
-      "bg-ink-900 text-bone-50 hover:bg-ink-800 active:bg-ink-950 shadow-[0_1px_2px_rgba(6,8,12,0.35)]",
+      "bg-invert text-invert-fg hover:opacity-90 active:opacity-100 shadow-[0_1px_2px_rgba(6,8,12,0.35)]",
     accent:
       "bg-ember-500 text-white hover:bg-ember-600 shadow-[0_12px_32px_-14px_rgba(242,107,36,0.9)]",
     outline:
-      "border border-ink-900/15 text-ink-800 hover:border-ink-900/35 hover:bg-ink-900/[0.04]",
-    ghost: "text-ink-500 hover:text-ink-900 hover:bg-ink-900/[0.05]",
+      "border border-body/15 text-body hover:border-body/35 hover:bg-body/[0.04]",
+    ghost: "text-body-soft hover:text-body hover:bg-body/[0.05]",
     onDark:
       "border border-bone-100/25 bg-bone-50/[0.06] text-bone-50 backdrop-blur-sm hover:bg-bone-50/[0.14] hover:border-bone-100/45",
   }[variant];

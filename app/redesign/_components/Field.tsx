@@ -30,10 +30,10 @@ const toneClasses = {
     hint: "text-bone-300/45",
   },
   light: {
-    label: "text-ink-500",
+    label: "text-body-soft",
     control:
-      "border-ink-900/12 bg-bone-50 text-ink-900 placeholder:text-ink-300 focus:border-ink-900/35",
-    hint: "text-ink-400",
+      "border-body/12 bg-paper text-body placeholder:text-body-faint focus:border-body/35",
+    hint: "text-body-mute",
   },
 } as const;
 
