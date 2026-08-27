@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Package, Mail, ShieldCheck, Heart } from "lucide-react";
+import Image from "next/image";
+import { Mail, ShieldCheck, Heart } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,9 +13,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center text-white font-bold">
-                <Package className="w-5 h-5" />
+            <Link href="/" className="flex items-center gap-3">
+              <div className="relative h-10 w-10 rounded-xl overflow-hidden bg-white p-1 flex items-center justify-center">
+                <Image
+                  src="/images/logo-color.png"
+                  alt="HomeMoversPack Logo"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
               </div>
               <span className="text-xl font-bold text-white tracking-tight">
                 HomeMovers<span className="text-orange-500">Pack</span>

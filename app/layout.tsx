@@ -36,6 +36,10 @@ export const metadata: Metadata = {
     description:
       "Free welcome packs, moving house checklist, verified partner perks, and our annual £10,000 prize draw.",
   },
+  icons: {
+    icon: "/images/favicon.png",
+    apple: "/images/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

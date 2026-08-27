@@ -1,11 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import {
   Sparkles,
   CheckCircle2,
   Shield,
   ArrowRight,
-  Home,
   Gift,
   Award,
 } from "lucide-react";
@@ -92,14 +92,20 @@ export function HeroSection() {
               <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-amber-500/20 rounded-full blur-2xl" />
 
               {/* Floating Mover Card Header */}
-              <div className="flex items-center justify-between pb-6 border-b border-slate-800">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-800">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400">
-                    <Home className="w-6 h-6" />
+                  <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-slate-800 border border-slate-700 flex items-center justify-center p-1">
+                    <Image
+                      src="/images/pack-box.png"
+                      alt="Home Movers Welcome Box"
+                      width={56}
+                      height={56}
+                      className="object-contain"
+                    />
                   </div>
                   <div>
                     <h3 className="font-bold text-base text-white">
-                      Your Moving Companion
+                      Your Welcome Companion
                     </h3>
                     <p className="text-xs text-slate-400">
                       Delivered directly to UK doorsteps

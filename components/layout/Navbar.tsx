@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Package, Gift, Menu, X, CheckSquare, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { Gift, Menu, X, CheckSquare, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export function Navbar() {
@@ -39,10 +40,16 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 group focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-lg"
+            className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-lg"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform">
-              <Package className="w-5 h-5" />
+            <div className="relative h-11 w-11 rounded-xl overflow-hidden bg-white shadow-md border border-slate-100 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+              <Image
+                src="/images/logo-color.png"
+                alt="HomeMoversPack Logo"
+                width={44}
+                height={44}
+                className="object-contain"
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 dark:text-white leading-none">
