@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Button } from "./Button";
 import { cn } from "@/lib/utils";
+import { HOME_HREF } from "../_data/variant";
 
 const NAV_LINKS = [
   { label: "The Pack", href: "#welcome-pack" },
@@ -106,7 +107,7 @@ export function Navbar() {
       >
         <div className="mx-auto flex max-w-[88rem] items-center justify-between gap-6 px-5 sm:px-8">
           <Link
-            href="/redesign"
+            href={HOME_HREF}
             className="group flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember-500 focus-visible:ring-offset-4"
           >
             <span

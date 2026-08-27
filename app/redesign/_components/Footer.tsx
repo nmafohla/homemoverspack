@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, ShieldCheck } from "lucide-react";
+import { HOME_HREF, IS_REDESIGN_ROOT } from "../_data/variant";
 
 const COLUMNS = [
   {
@@ -33,7 +34,7 @@ export function Footer() {
         <div className="grid gap-12 border-b border-bone-100/10 pb-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Link
-              href="/redesign"
+              href={HOME_HREF}
               className="inline-flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember-500 focus-visible:ring-offset-4 focus-visible:ring-offset-ink-950"
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white p-1.5">
@@ -115,12 +116,16 @@ export function Footer() {
             >
               Terms &amp; conditions
             </Link>
-            <Link
-              href="/"
-              className="transition-colors duration-300 hover:text-bone-200"
-            >
-              View the original design
-            </Link>
+            {/* Only meaningful where the original design is still at `/`; on a
+                deployment that leads with this design it would link to itself. */}
+            {!IS_REDESIGN_ROOT && (
+              <Link
+                href="/"
+                className="transition-colors duration-300 hover:text-bone-200"
+              >
+                View the original design
+              </Link>
+            )}
           </div>
         </div>
       </div>
