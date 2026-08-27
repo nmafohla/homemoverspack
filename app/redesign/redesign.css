@@ -1,0 +1,193 @@
+/*
+ * Stylesheet for the /redesign concept only.
+ *
+ * This is a separate Tailwind entry point from app/globals.css on purpose: the
+ * original design keeps its own tokens and base rules untouched, and nothing
+ * defined here can leak backwards into it. Every base rule below is scoped to
+ * .hmp-2026, the wrapper this route's layout puts around the whole page.
+ */
+@import "tailwindcss";
+
+@theme {
+  /* Cool near-black ink */
+  --color-ink-950: #06080c;
+  --color-ink-900: #0b0f16;
+  --color-ink-850: #10151e;
+  --color-ink-800: #141a24;
+  --color-ink-700: #1e2734;
+  --color-ink-600: #2b3644;
+  --color-ink-500: #46525f;
+  --color-ink-400: #6b7683;
+  --color-ink-300: #98a1ac;
+
+  /* Warm paper */
+  --color-bone-50: #fdfbf8;
+  --color-bone-100: #f8f4ee;
+  --color-bone-200: #efe8de;
+  --color-bone-300: #e2d8c9;
+  --color-bone-400: #c4b7a4;
+  --color-bone-500: #9c8d78;
+
+  /* Accent */
+  --color-ember-200: #ffd9bd;
+  --color-ember-300: #ffb784;
+  --color-ember-400: #ff8f4d;
+  --color-ember-500: #f26b24;
+  --color-ember-600: #d2500f;
+  --color-ember-700: #a83c0c;
+
+  /* Trust / verified */
+  --color-sage-300: #9ccdbe;
+  --color-sage-400: #6faf9e;
+  --color-sage-500: #3e8b79;
+  --color-sage-600: #2c6b5c;
+
+  /* Prize */
+  --color-gold-300: #f7d799;
+  --color-gold-400: #f0be5e;
+  --color-gold-500: #dfa032;
+
+  /* next/font injects the -hmp- variables; aliasing them keeps the token
+     names generic without creating a self-referential custom property. */
+  --font-display: var(--font-hmp-display), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-hmp-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hmp-2026 {
+  background: var(--color-bone-50);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+.hmp-2026 ::selection {
+  background: var(--color-ember-500);
+  color: #fff;
+}
+
+/* Display type wants tight tracking and no synthetic bolding. */
+.hmp-2026 .font-display {
+  font-synthesis-weight: none;
+  letter-spacing: -0.021em;
+}
+
+/* ------------------------------------------------------------------
+   Scroll-reveal.
+
+   The hidden state is gated behind `scripting: enabled` rather than a
+   bootstrap script that stamps an attribute on <html>. That keeps the rule
+   in the stylesheet — so it applies on the very first paint with no flash —
+   without React seeing a server/client attribute mismatch on hydration.
+   Browsers that don't support the media feature, and anyone browsing with
+   JS off, never match it and simply get the content unhidden.
+   ------------------------------------------------------------------ */
+@media (scripting: enabled) {
+  .hmp-2026 [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.75rem);
+    transition:
+      opacity 0.9s var(--ease-out-expo),
+      transform 0.9s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .hmp-2026 [data-reveal="shown"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Film grain — one small SVG turbulence tile over a dark surface.
+   Above the footage, below the copy, never intercepts the pointer.
+   ------------------------------------------------------------------ */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes hmp-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: hmp-marquee 46s linear infinite;
+}
+
+@keyframes hmp-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.6rem);
+  }
+}
+
+.animate-float-slow {
+  animation: hmp-float 7s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------------
+   Motion preferences — decoration stops, nothing disappears.
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .hmp-2026 {
+    scroll-behavior: auto;
+  }
+
+  .hmp-2026 [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hmp-2026 .animate-marquee,
+  .hmp-2026 .animate-float-slow,
+  .hmp-2026 .animate-pulse {
+    animation: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Print — the moving checklist is meant to end up on paper.
+   ------------------------------------------------------------------ */
+@media print {
+  .hmp-2026 header,
+  .hmp-2026 footer,
+  .hmp-2026 video,
+  .hmp-2026 #prize-draw,
+  .hmp-2026 #offers,
+  .hmp-2026 #videos,
+  .hmp-2026 #magazine,
+  .hmp-2026 #reviews,
+  .hmp-2026 #feedback,
+  .hmp-2026 #partner-with-us,
+  .hmp-2026 button {
+    display: none !important;
+  }
+
+  .hmp-2026 #checklist {
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  .hmp-2026 #checklist * {
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+}
