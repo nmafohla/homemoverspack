@@ -1,6 +1,7 @@
 import { Navbar } from "./_components/Navbar";
 import { Hero } from "./_components/Hero";
 import { PackShowcase } from "./_components/PackShowcase";
+import { SponsorBanners } from "./_components/SponsorBanners";
 import { OffersSection } from "./_components/OffersSection";
 import { PrizeDrawSection } from "./_components/PrizeDrawSection";
 import { InteractiveChecklist } from "./_components/InteractiveChecklist";
@@ -18,6 +19,7 @@ export default function RedesignPage() {
       <main id="main">
         <Hero />
         <PackShowcase />
+        <SponsorBanners />
         <OffersSection />
         <PrizeDrawSection />
         <InteractiveChecklist />

@@ -1,5 +1,6 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { AMBIENT } from "../_data/media";
+import { platinumSponsor } from "../_data/sponsors";
 import { BackgroundVideo } from "./BackgroundVideo";
 import { Reveal } from "./Reveal";
 import { Button } from "./Button";
@@ -12,6 +13,8 @@ const PROOF_POINTS = [
 ] as const;
 
 export function Hero() {
+  const platinum = platinumSponsor();
+
   return (
     <section className="relative isolate flex min-h-[92svh] flex-col justify-end overflow-hidden bg-ink-950 pt-32 pb-10">
       <BackgroundVideo
@@ -108,9 +111,38 @@ export function Hero() {
           ))}
         </Reveal>
 
-        <div className="mt-10 flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-bone-300/45">
-          <ArrowDown className="h-3.5 w-3.5" aria-hidden="true" />
-          What&rsquo;s in the pack
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-6">
+          <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-bone-300/45">
+            <ArrowDown className="h-3.5 w-3.5" aria-hidden="true" />
+            What&rsquo;s in the pack
+          </div>
+
+          {/*
+            The platinum lockup. Placement on the hero is the benefit that
+            separates platinum from gold, so it sits in the first screenful
+            rather than down in the banner stack.
+          */}
+          {platinum?.logo && (
+            <a
+              href={platinum.href}
+              target="_blank"
+              rel="noopener sponsored"
+              aria-label={`Sponsored by ${platinum.brand}`}
+              className="group flex items-center gap-3.5 rounded-full border border-bone-100/12 bg-ink-950/40 py-2 pl-4 pr-5 backdrop-blur-sm transition-colors duration-500 hover:border-bone-100/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember-500"
+            >
+              <span className="text-[9.5px] font-semibold uppercase tracking-[0.2em] text-bone-300/50">
+                Sponsored by
+              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={platinum.logo.src}
+                alt={platinum.brand}
+                width={platinum.logo.width}
+                height={platinum.logo.height}
+                className="h-5 w-auto opacity-85 transition-opacity duration-500 group-hover:opacity-100"
+              />
+            </a>
+          )}
         </div>
       </div>
     </section>

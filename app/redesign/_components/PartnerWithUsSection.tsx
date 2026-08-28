@@ -7,6 +7,7 @@ import {
   type PartnerContactInput,
 } from "@/lib/validations";
 import { PARTNER_OFFERS } from "@/data/offers";
+import { SPONSOR_PACKAGES } from "../_data/sponsors";
 import { AMBIENT } from "../_data/media";
 import { BackgroundVideo } from "./BackgroundVideo";
 import { Reveal } from "./Reveal";
@@ -151,6 +152,60 @@ export function PartnerWithUsSection() {
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Button>
           </Reveal>
+        </div>
+
+        {/* The rate card. Package contents live beside the advertiser inventory
+            in _data/sponsors.ts, so what this promises and what the page
+            actually renders cannot drift apart. */}
+        <div className="mt-20 grid gap-5 lg:grid-cols-3">
+          {SPONSOR_PACKAGES.map((pkg, index) => {
+            const isPlatinum = pkg.tier === "platinum";
+            return (
+              <Reveal key={pkg.tier} delay={index * 90}>
+                <div
+                  className={
+                    isPlatinum
+                      ? "flex h-full flex-col rounded-3xl border border-gold-400/35 bg-gold-400/[0.07] p-7 backdrop-blur-sm"
+                      : "flex h-full flex-col rounded-3xl border border-bone-100/12 bg-ink-950/50 p-7 backdrop-blur-sm"
+                  }
+                >
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3
+                      className={
+                        isPlatinum
+                          ? "font-display text-3xl text-gold-300"
+                          : "font-display text-3xl text-bone-50"
+                      }
+                    >
+                      {pkg.name}
+                    </h3>
+                    <span className="font-mono text-[11px] tracking-wider text-bone-300/50">
+                      {pkg.creative}
+                    </span>
+                  </div>
+
+                  <ul className="mt-6 space-y-3">
+                    {pkg.includes.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-bone-200/75"
+                      >
+                        <Check
+                          className={
+                            isPlatinum
+                              ? "mt-0.5 h-3.5 w-3.5 shrink-0 text-gold-400"
+                              : "mt-0.5 h-3.5 w-3.5 shrink-0 text-sage-400"
+                          }
+                          aria-hidden="true"
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
 
         <Reveal
