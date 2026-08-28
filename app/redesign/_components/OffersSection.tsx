@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { ArrowUpRight, Check, Copy, Search, Star } from "lucide-react";
 import { PARTNER_OFFERS, type PartnerOffer } from "@/data/offers";
+import { offerLogo } from "../_data/offerLogos";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { cn } from "@/lib/utils";
@@ -130,10 +131,47 @@ export function OffersSection() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-[15px] font-semibold text-body">
-                      {offer.brand}
-                    </p>
-                    <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.16em] text-body-mute">
+                    {(() => {
+                      const logo = offerLogo(offer.id);
+
+                      // No supplied mark: the brand name as plain text, with no
+                      // chip or frame, so nothing here can be mistaken for a
+                      // logo the brand never gave us. The shared h-14 keeps the
+                      // row aligned with the cards that do have one.
+                      if (!logo) {
+                        return (
+                          <span className="flex h-14 items-center">
+                            <span className="text-[17px] font-semibold text-body">
+                              {offer.brand}
+                            </span>
+                          </span>
+                        );
+                      }
+
+                      return (
+                        <>
+                          <span
+                            className={cn(
+                              "flex h-14 w-28 items-center justify-center overflow-hidden rounded-xl p-2 ring-1",
+                              logo.chip === "dark"
+                                ? "bg-ink-900 ring-white/10"
+                                : "bg-white ring-body/[0.08]",
+                            )}
+                          >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={logo.src}
+                              alt={offer.brand}
+                              loading="lazy"
+                              decoding="async"
+                              className="max-h-full max-w-full object-contain"
+                            />
+                          </span>
+                          <span className="sr-only">{offer.brand}</span>
+                        </>
+                      );
+                    })()}
+                    <p className="mt-3 text-[11px] font-medium uppercase tracking-[0.16em] text-body-mute">
                       {offer.category}
                     </p>
                   </div>
