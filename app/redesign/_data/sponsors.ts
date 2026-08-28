@@ -19,9 +19,15 @@
  * drive each slot's aspect ratio, which reserves space and prevents layout
  * shift as banners load.
  *
- * The creatives are currently served from the live WordPress media library.
- * Moving them into `public/redesign/sponsors/` would take them off that
- * dependency — swap the `src` values and nothing else changes.
+ * Creatives live in `public/redesign/sponsors/`, served from this deployment
+ * rather than the live WordPress media library, so the site carries no runtime
+ * dependency on homemoverspack.co.uk staying up.
+ *
+ * They are stored byte-identical to what each advertiser supplied — including
+ * the animated GIFs (ADT, EE, Le Creuset) — and are deliberately not
+ * re-compressed. These are creatives a brand has signed off; degrading the
+ * artwork is not ours to do. Replacing one is a straight file swap, with the
+ * `width`/`height` below updated to the new artwork's true dimensions.
  */
 export type SponsorTier = "platinum" | "gold" | "silver";
 
@@ -43,7 +49,7 @@ export interface Sponsor {
   logo?: SponsorCreative;
 }
 
-const MEDIA = "https://homemoverspack.co.uk/wp-content/uploads";
+const MEDIA = "/redesign/sponsors";
 
 export const SPONSORS: Sponsor[] = [
   {
@@ -52,12 +58,12 @@ export const SPONSORS: Sponsor[] = [
     tier: "platinum",
     href: "https://homemoverspack.co.uk/airtasker",
     banner: {
-      src: `${MEDIA}/2026/06/Airtasker-Bannerlarge-1024x256.jpg`,
+      src: `${MEDIA}/airtasker-banner.jpg`,
       width: 1024,
       height: 256,
     },
     logo: {
-      src: `${MEDIA}/2026/07/airtasker-Slider-Logo-copy.png`,
+      src: `${MEDIA}/airtasker-logo.png`,
       width: 297,
       height: 102,
     },
@@ -68,7 +74,7 @@ export const SPONSORS: Sponsor[] = [
     tier: "gold",
     href: "https://homemoverspack.co.uk/adt-260630",
     banner: {
-      src: `${MEDIA}/2026/06/ADT_Home-Movers-Campaign_Banner_1200x200.gif`,
+      src: `${MEDIA}/adt-banner.gif`,
       width: 1200,
       height: 200,
     },
@@ -79,7 +85,7 @@ export const SPONSORS: Sponsor[] = [
     tier: "gold",
     href: "https://homemoverspack.co.uk/ee-26-07-01",
     banner: {
-      src: `${MEDIA}/2026/07/EE-Banner1.gif`,
+      src: `${MEDIA}/ee-banner.gif`,
       width: 1200,
       height: 200,
     },
@@ -89,7 +95,7 @@ export const SPONSORS: Sponsor[] = [
     brand: "AEG",
     tier: "gold",
     href: "https://homemoverspack.co.uk/aeg",
-    banner: { src: `${MEDIA}/2022/12/aeg-banner.jpg`, width: 1200, height: 200 },
+    banner: { src: `${MEDIA}/aeg-banner.jpg`, width: 600, height: 100 },
   },
   {
     id: "le-creuset-banner",
@@ -97,9 +103,9 @@ export const SPONSORS: Sponsor[] = [
     tier: "gold",
     href: "https://homemoverspack.co.uk/lecreuset-23-10-30",
     banner: {
-      src: `${MEDIA}/2023/10/le-creuset-banner.gif`,
-      width: 1200,
-      height: 200,
+      src: `${MEDIA}/le-creuset-banner.gif`,
+      width: 600,
+      height: 100,
     },
   },
   {
@@ -107,7 +113,7 @@ export const SPONSORS: Sponsor[] = [
     brand: "Gousto",
     tier: "silver",
     href: "https://homemoverspack.co.uk/gousto",
-    banner: { src: `${MEDIA}/2021/04/gousto-button.gif`, width: 210, height: 116 },
+    banner: { src: `${MEDIA}/gousto-button.gif`, width: 210, height: 116 },
   },
   {
     id: "charlton-jenrick",
@@ -115,7 +121,7 @@ export const SPONSORS: Sponsor[] = [
     tier: "silver",
     href: "https://homemoverspack.co.uk/charltonandjenrick",
     banner: {
-      src: `${MEDIA}/2023/11/charlton-jenrick-button.jpg`,
+      src: `${MEDIA}/charlton-jenrick-button.jpg`,
       width: 210,
       height: 116,
     },
@@ -126,7 +132,7 @@ export const SPONSORS: Sponsor[] = [
     tier: "silver",
     href: "https://homemoverspack.co.uk/earthborn",
     banner: {
-      src: `${MEDIA}/2021/04/earthborn-button.gif`,
+      src: `${MEDIA}/earthborn-button.gif`,
       width: 210,
       height: 116,
     },
@@ -137,7 +143,7 @@ export const SPONSORS: Sponsor[] = [
     tier: "silver",
     href: "https://homemoverspack.co.uk/lecreuset",
     banner: {
-      src: `${MEDIA}/2021/07/lecreuset-button2.jpg`,
+      src: `${MEDIA}/le-creuset-button.jpg`,
       width: 210,
       height: 116,
     },
@@ -147,7 +153,7 @@ export const SPONSORS: Sponsor[] = [
     brand: "American Express",
     tier: "silver",
     href: "https://homemoverspack.co.uk/amex",
-    banner: { src: `${MEDIA}/2023/10/amex-button.gif`, width: 210, height: 116 },
+    banner: { src: `${MEDIA}/amex-button.gif`, width: 210, height: 116 },
   },
   {
     id: "cuprinol",
@@ -155,7 +161,7 @@ export const SPONSORS: Sponsor[] = [
     tier: "silver",
     href: "https://homemoverspack.co.uk/cuprinol",
     banner: {
-      src: `${MEDIA}/2026/03/cuprinol-button.jpg`,
+      src: `${MEDIA}/cuprinol-button.jpg`,
       width: 210,
       height: 116,
     },
@@ -166,7 +172,7 @@ export const SPONSORS: Sponsor[] = [
     tier: "silver",
     href: "https://homemoverspack.co.uk/geberit-23-10-30",
     banner: {
-      src: `${MEDIA}/2023/10/geberit-button.jpg`,
+      src: `${MEDIA}/geberit-button.jpg`,
       width: 210,
       height: 116,
     },
@@ -177,7 +183,7 @@ export const SPONSORS: Sponsor[] = [
     tier: "silver",
     href: "https://homemoverspack.co.uk/tvlicensing",
     banner: {
-      src: `${MEDIA}/2020/07/button-grey-tvlicence.jpg`,
+      src: `${MEDIA}/tv-licensing-button.jpg`,
       width: 210,
       height: 116,
     },
@@ -187,7 +193,7 @@ export const SPONSORS: Sponsor[] = [
     brand: "Smeg UK",
     tier: "silver",
     href: "https://homemoverspack.co.uk/smeguk",
-    banner: { src: `${MEDIA}/2022/07/smeg-button.png`, width: 210, height: 116 },
+    banner: { src: `${MEDIA}/smeg-button.png`, width: 210, height: 116 },
   },
   {
     id: "ebay",
@@ -195,7 +201,7 @@ export const SPONSORS: Sponsor[] = [
     tier: "silver",
     href: "https://homemoverspack.co.uk/ebay",
     banner: {
-      src: `${MEDIA}/2026/03/button-grey-ebay-200x110-1.jpg`,
+      src: `${MEDIA}/ebay-button.jpg`,
       width: 200,
       height: 110,
     },
@@ -206,7 +212,7 @@ export const SPONSORS: Sponsor[] = [
     tier: "silver",
     href: "https://homemoverspack.co.uk/nectar",
     banner: {
-      src: `${MEDIA}/2020/07/button-grey-nectar.jpg`,
+      src: `${MEDIA}/nectar-button.jpg`,
       width: 210,
       height: 116,
     },
